@@ -1,0 +1,64 @@
+# 
+regexp=\b(llvm\-gcc|clang|gcc|rm|cc)\b
+colours=yellow
+count=more
+.........
+#.c / .o
+regexp=\s[A-Za-z0-9_]+\.(c|o)
+colours=bold white
+.........
+#
+regexp=^[^:\s]*?:\d+:
+colours=bold magenta
+.........
+regexp=^[^:\s]*?:
+colours=cyan
+count=once
+.........
+# warning flags
+regexp=\-W[A-Za-z0-9\-]*
+colours=cyan
+.........
+# 
+regexp=\`[A-Za-z0-9_():&*]+( const)?\'
+colours=magenta
+.........
+# various flags
+regexp=\s(-std=c99|\-c|\-fPIC|\-O\d|\-rf|\-f|\-r|\-g\d|\-g\b)
+colours=green
+.........
+# output
+regexp=\-o\s.+\b
+colours=yellow
+.........
+# link libraries
+regexp=\-l[A-Za-z0-9]+\s
+colours=magenta
+.........
+# include dirs
+regexp=\-I[\./A-Za-z0-9]+\s
+colours=magenta
+.........
+# warning and error won't work, unless you redirect also
+# stderr to grcat 
+#
+# warning
+regexp=warning:.*
+colours=white
+.........
+regexp=warning:
+colours=bold yellow
+count=once
+.........
+# error
+regexp=error:.*
+colours=bold white
+.........
+regexp=error:
+colours=bold white on_red
+count=once
+.........
+#note
+regexp=note:
+colours=bold cyan
+count=once

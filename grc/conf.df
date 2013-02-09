@@ -1,0 +1,19 @@
+# Size
+regexp=(\d+(\.){0,1}\d*(Bi|Ki|Mi|Gi|Ti){0,1})
+colours=blue
+=======
+# Paths
+regexp=(^(\w|\d|/)+)\s|((\w|\d|/)+)$
+colours=magenta
+=======
+# Titles
+regexp=(^Filesystem|Size|Used|Avail|Capacity|iused|ifree|%iused|Use%|Mounted\son)
+colours=yellow
+=======
+# User%
+regexp=(\d+%)
+colours=green
+=======
+# Over 90% usage
+regexp=(9[0-9]%|100%)
+colours=red
