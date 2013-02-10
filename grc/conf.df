@@ -1,5 +1,5 @@
 # Size
-regexp=(\d+(\.){0,1}\d*(Bi|Ki|Mi|Gi|Ti){0,1})
+regexp=(\d+(\.){0,1}\d*(Bi|Ki|Mi|Gi|Ti|B|K|M|G|T){0,1})
 colours=blue
 =======
 # Paths
