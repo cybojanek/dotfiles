@@ -6,12 +6,18 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 # GIT_PS1_SHOWUPSTREAM="auto"
 GIT_COMPLETION=0
-if [ `which brew` ]; then
+# OS X
+if [ `which brew > /dev/null 2>&1` ]; then
     if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ] && [ -f `brew --prefix`/etc/bash_completion.d/git-prompt.sh ]; then
         . `brew --prefix`/etc/bash_completion.d/git-completion.bash
         . `brew --prefix`/etc/bash_completion.d/git-prompt.sh
         GIT_COMPLETION=1
     fi
+# ArchLinux
+elif [ -f /usr/share/git/completion/git-completion.bash ] && [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    . /usr/share/git/completion/git-completion.bash
+    . /usr/share/git/completion/git-prompt.sh
+    GIT_COMPLETION=1
 fi
 
 # Calculate minutes since last git commit
