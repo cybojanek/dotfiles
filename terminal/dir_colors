@@ -1,0 +1,110 @@
+# add eval `dircolors ~/.dir_colors` to use
+# Work in progress...
+TERM xterm-256color
+
+# ATTR;TXT;BG
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+NORMAL      00
+FILE        00
+DIR         00;34
+LINK        00;35
+FIFO        40;33
+SOCK        07;33
+DOOR        01;35
+BLK         40;33;01
+CHR         40;33;01
+ORPHAN      01;05;37;41 
+MISSING     01;05;37;41
+
+# This is for files with execute permission:
+EXEC 00;31
+
+# Extension highliting
+# archives
+.tar    04;33
+.tgz    04;33
+.tar.gz 04;33
+.arj    04;33
+.taz    04;33
+.lzh    04;33
+.zip    04;33
+.z      04;33
+.Z      04;33
+.gz     04;33
+.bz2    04;33
+
+# Packages
+.deb 04;33
+.rpm 04;33
+.dmg 04;33
+.iso 04;33
+.dmg 04;33
+.pkg 04;33
+
+## media formats
+# images
+.jpg 00;38;5;33
+.jpeg 00;38;5;33
+.JPG 00;38;5;33
+.JPEG 00;38;5;33
+.png 00;38;5;33
+.gif 00;38;5;33
+.bmp 00;38;5;33
+.ppm 00;38;5;33
+.tga 00;38;5;33
+.xbm 00;38;5;33
+.xpm 00;38;5;33
+.tif 00;38;5;33
+.png 00;38;5;33
+# videos
+.mkv 00;38;5;33
+.mpg 00;38;5;33
+.avi 00;38;5;33
+# audio
+.mp3 00;38;5;33
+.flac 00;38;5;33
+.wav 00;38;5;33
+
+## documents
+.pdf  00;38;5;197
+.doc  00;38;5;197
+.docx 00;38;5;197
+.ppt  00;38;5;197
+.pptx 00;38;5;197
+.xls  00;38;5;197
+.xlsx 00;38;5;197
+.txt  00;38;5;197
+.md   00;38;5;197
+.rst  00;38;5;197
+.rtf  00;38;5;197
+.tex  00;38;5;197
+
+## libs
+.dylib 00;38;5;106
+.so    00;38;5;106
+.a     00;38;5;94
+
+## source files
+# python
+.py   00;38;5;28
+# assembly
+.asm  00;38;5;106
+# c
+.c    00;38;5;190
+.cpp  00;38;5;190
+.h    00;38;5;172
+# fortran
+.f    00;38;5;190
+# java
+.java 00;38;5;94
+.jar  00;38;5;142
+# web
+.css  00;38;5;170
+.js   00;38;5;172
+.json 00;38;5;166
+.html 00;38;5;125
