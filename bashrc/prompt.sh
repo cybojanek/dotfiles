@@ -66,7 +66,12 @@ update_prompt() {
     # Always move cursor back to the start of line
     PS1="\[\033[G\]"
     # Set the title to user@host
-    PS1="$PS1${txtylw}┌──${txtgrn}\[\u\]${txtylw}@${txtwht}\[\h\]"
+    PS1="$PS1${txtylw}┌──"
+    local user_color="${txtgrn}"
+    if [ `whoami` == 'root' ]; then
+        user_color="${blired}"
+    fi
+    PS1="$PS1${user_color}\[\u\]${txtylw}@${txtwht}\[\h\]"
     #[directory]
     PS1="$PS1${txtgrn}[${txtylw}\w${txtgrn}]"
     # git

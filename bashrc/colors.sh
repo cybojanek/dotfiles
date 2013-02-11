@@ -20,7 +20,7 @@ bldpur='\[\e[1;35m\]' # Purple
 bldcyn='\[\e[1;36m\]' # Cyan
 bldwht='\[\e[1;37m\]' # White
 #Underlined Colors
-unkblk='\[\e[4;30m\]' # Black
+undblk='\[\e[4;30m\]' # Black
 undred='\[\e[4;31m\]' # Red
 undgrn='\[\e[4;32m\]' # Green
 undylw='\[\e[4;33m\]' # Yellow
@@ -28,6 +28,15 @@ undblu='\[\e[4;34m\]' # Blue
 undpur='\[\e[4;35m\]' # Purple
 undcyn='\[\e[4;36m\]' # Cyan
 undwht='\[\e[4;37m\]' # White
+#Blinking Colors
+bliblk='\[\e[5;30m\]' # Black
+blired='\[\e[5;31m\]' # Red
+bligrn='\[\e[5;32m\]' # Green
+bliylw='\[\e[5;33m\]' # Yellow
+bliblu='\[\e[5;34m\]' # Blue
+blipur='\[\e[5;35m\]' # Purple
+blicyn='\[\e[5;36m\]' # Cyan
+bliwht='\[\e[5;37m\]' # White
 #Background Colors
 bakblk='\[\e[40m\]'   # Black
 bakred='\[\e[41m\]'   # Red
