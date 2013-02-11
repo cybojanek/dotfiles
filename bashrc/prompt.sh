@@ -7,7 +7,7 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 # GIT_PS1_SHOWUPSTREAM="auto"
 GIT_COMPLETION=0
 # OS X
-if [ `which brew > /dev/null 2>&1` ]; then
+if [ `uname` == 'Darwin' ] && [ `which brew` ]; then
     if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ] && [ -f `brew --prefix`/etc/bash_completion.d/git-prompt.sh ]; then
         . `brew --prefix`/etc/bash_completion.d/git-completion.bash
         . `brew --prefix`/etc/bash_completion.d/git-prompt.sh
