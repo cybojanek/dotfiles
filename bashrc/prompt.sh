@@ -53,10 +53,10 @@ git_prompt() {
 
 # Called after every command to update prompt
 update_prompt() {
+    RET=$?;
     #write the current terminal's history to the history file
     #history -n
     history -a
-    RET=$?;
 
     # Set the return symbol
     SPECHARG="☯"
