@@ -1,8 +1,11 @@
-# 
-regexp=\b(llvm\-gcc|clang|gcc|rm|cc)\b
+regexp=[0-9a-zA-Z_\-]*(gcc|ld|ar)\s
 colours=yellow
-count=more
+count=once
 .........
+# gcc
+#regexp=\b(llvm\-gcc|clang|gcc|rm|cc)\b
+#colours=yellow
+#count=more
 #.c / .o
 regexp=\s[A-Za-z0-9_]+\.(c|o)
 colours=bold white
@@ -23,8 +26,12 @@ colours=cyan
 regexp=\`[A-Za-z0-9_():&*]+( const)?\'
 colours=magenta
 .........
+# machine
+regexp=\s(\-msoft\-float|\-mno\-sse|\-mtune=amdfam10)
+colours=bold blue
+.........
 # various flags
-regexp=\s(-std=c99|\-c|\-fPIC|\-O\d|\-rf|\-f|\-r|\-g\d|\-g\b)
+regexp=\s(-std=c99|\-c|\-fPIC|\-fno\-builtin|\-O\d|\-r|\-g\d|\-g\b)
 colours=green
 .........
 # output
@@ -32,11 +39,15 @@ regexp=\-o\s.+\b
 colours=yellow
 .........
 # link libraries
-regexp=\-l[A-Za-z0-9]+\s
+regexp=\s\-l[A-Za-z0-9]+\s
 colours=magenta
 .........
 # include dirs
-regexp=\-I[\./A-Za-z0-9]+\s
+regexp=\s\-I[\./A-Za-z0-9]+\s
+colours=magenta
+.........
+# include dirs
+regexp=\s(\-nostdinc|\-nostdlib|\-shared|\-soname|\-\-dynamic\-linker|\-\-rpath\-link)[=a-zA-Z\./]*
 colours=magenta
 .........
 # warning and error won't work, unless you redirect also
