@@ -9,7 +9,11 @@ set __fish_git_prompt_color_stashstate green
 set __fish_git_prompt_color_upstream_ahead green
 set __fish_git_prompt_color_upstream_behind green
 set __fish_git_prompt_color_upstream_equal green
+set __fish_git_prompt_color_upstream green
 set __fish_git_prompt_color_upstream_done green
+set __fish_git_prompt_color_bare green
+set __fish_git_prompt_color_merging red
+
 
 function fish_prompt --description 'Write out the prompt'
     # Exit code from previous command
@@ -28,12 +32,12 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     # Current directory
-    set -g __fish_prompt_cwd (set_color green)"["(set_color yellow)(prompt_pwd)(set_color green)"]"
+    set -g __fish_prompt_cwd (set_color green)"["(set_color yellow)(echo $PWD | sed -e "s|^$HOME|~|")(set_color green)"]"
 
     # User color
     switch $USER
       case root
-        set -g __fish_promt_user (set_color red)"root"
+        set -g __fish_prompt_user (set_color red)"root"
       case '*'
         set -g __fish_prompt_user (set_color green)$USER
     end
