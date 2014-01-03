@@ -25,21 +25,24 @@ except ImportError:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Notify!")
+    parser.add_argument("--local", action="store_true", default=False)
     parser.add_argument("message")
     args = parser.parse_args()
     # Add hostname
-    message = "%s: %s" % (socket.gethostname(), args.message)
-    # Pushover
-    token, user = os.getenv('POKEME_PUSHOVER_TOKEN'), os.getenv('POKEME_PUSHOVER_USER')
-    if token and user:
-        conn = httplib.HTTPSConnection("api.pushover.net:443")
-        conn.request("POST", "/1/messages.json",
-        urllib.urlencode({
-            "token": token,
-            "user": user,
-            "message": message,
-        }), { "Content-type": "application/x-www-form-urlencoded" })
-        conn.getresponse()
+    #message = "%s: %s" % (socket.gethostname(), args.message)
+    message = args.message
+    if not args.local:
+        # Pushover
+        token, user = os.getenv('POKEME_PUSHOVER_TOKEN'), os.getenv('POKEME_PUSHOVER_USER')
+        if token and user:
+            conn = httplib.HTTPSConnection("api.pushover.net:443")
+            conn.request("POST", "/1/messages.json",
+            urllib.urlencode({
+                "token": token,
+                "user": user,
+                "message": message,
+            }), { "Content-type": "application/x-www-form-urlencoded" })
+            conn.getresponse()
     # Notification Center
     if nc and os.getenv("POKEME_NC"):
         pync.Notifier.notify(message)

@@ -1,4 +1,4 @@
-regexp=[0-9a-zA-Z_\-]*(gcc|ld|ar)\s
+regexp=[0-9a-zA-Z_\-]*(gcc|ld|ar|as)\s
 colours=yellow
 count=once
 .........
@@ -27,7 +27,7 @@ regexp=\`[A-Za-z0-9_():&*]+( const)?\'
 colours=magenta
 .........
 # machine
-regexp=\s(\-msoft\-float|\-mno\-sse|\-mtune=amdfam10)
+regexp=\s(\-msoft\-float|\-mno\-sse|\-mtune=amdfam10|\-mno\-red\-zone)
 colours=bold blue
 .........
 # various flags
@@ -46,8 +46,12 @@ colours=magenta
 regexp=\s\-I[\./A-Za-z0-9]+\s
 colours=magenta
 .........
+# output
+regexp=\-MT\s[\./A-Za-z0-9]+\s
+colours=magenta
+.........
 # include dirs
-regexp=\s(\-nostdinc|\-nostdlib|\-shared|\-soname|\-\-dynamic\-linker|\-\-rpath\-link)[=a-zA-Z\./]*
+regexp=\s(\-M|\-MM|\-MF|\-MG|\-MP|\-MQ|\-nostdinc|\-nostdlib|\-shared|\-soname|\-\-dynamic\-linker|\-\-rpath\-link)[=a-zA-Z\./]*
 colours=magenta
 .........
 # warning and error won't work, unless you redirect also
