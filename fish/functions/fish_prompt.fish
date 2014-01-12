@@ -14,7 +14,6 @@ set __fish_git_prompt_color_upstream_done green
 set __fish_git_prompt_color_bare green
 set __fish_git_prompt_color_merging red
 
-
 function fish_prompt --description 'Write out the prompt'
     # Exit code from previous command
     set -l last_status $status
@@ -28,7 +27,7 @@ function fish_prompt --description 'Write out the prompt'
 
     # Just calculate these once, to save a few cycles when displaying the prompt
     if not set -q __fish_prompt_hostname
-        set -g __fish_prompt_hostname (set_color white)(hostname|cut -d . -f 1)(set_color normal)
+        set -g __fish_prompt_hostname (echo -n -e "\e[38;5;"(__hostname_hash_color)"m")(hostname)(set_color normal)
     end
 
     # Current directory
@@ -49,6 +48,10 @@ function fish_prompt --description 'Write out the prompt'
     echo -n -s (set_color yellow)".--" "$__fish_prompt_user" "$__fish_user_host_delim" "$__fish_prompt_hostname"
     # [cwd]
     echo -n -s "$__fish_prompt_cwd"
+    # virtual env
+    if set -q VIRTUAL_ENV
+        echo -n -s " " (set_color -u green ) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal)
+    end
     # git
     echo -n -s (set_color normal)(__fish_git_prompt)
     # newline
@@ -57,4 +60,5 @@ function fish_prompt --description 'Write out the prompt'
     echo -n -s (set_color yellow)"'->"
     # exit status
     echo -n -s $__fish_prompt_exit_status " "
+
 end
