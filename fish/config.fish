@@ -104,6 +104,5 @@ if status -i
     set -l g $__fish_ansi_to_rgb_g[( math $c + 1)]
     set -l b $__fish_ansi_to_rgb_b[( math $c + 1)]
 
-    set -U __fish_title_color "\r\033]6;1;bg;red;brightness;$r\a\033]6;1;bg;green;brightness;$g\a\033]6;1;bg;blue;brightness;$b\a\e[K"
-    echo -e -n $__fish_title_color
+    set -U __fish_title_color "\e]6;1;bg;red;brightness;$r\a\r\e]6;1;bg;green;brightness;$g\a\r\e]6;1;bg;blue;brightness;$b\a\r"
 end

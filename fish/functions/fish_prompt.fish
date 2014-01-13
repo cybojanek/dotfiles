@@ -25,6 +25,9 @@ function fish_prompt --description 'Write out the prompt'
     # Store previous exit code
     set -l last_status $status
 
+    # Refresh titlebar color
+    echo -e -n $__fish_title_color
+
     # Just calculate these once, to save a few cycles when displaying the prompt
     if not set -q __fish_prompt_hostname
         set -g __fish_prompt_hostname (echo -n -e "\e[38;5;"(__hostname_hash_color)"m")(hostname)(set_color normal)
