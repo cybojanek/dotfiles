@@ -30,11 +30,13 @@ function fish_prompt --description 'Write out the prompt'
 
     # Just calculate these once, to save a few cycles when displaying the prompt
     if not set -q __fish_prompt_hostname
-        set -g __fish_prompt_hostname (echo -n -e "\e[38;5;"(__hostname_hash_color)"m")(hostname)(set_color normal)
+        set -g __fish_prompt_hostname (echo -n -e "\e[38;5;"(\
+            __hostname_hash_color)"m")(hostname)(set_color normal)
     end
 
     # Current directory
-    set -g __fish_prompt_cwd (set_color green)"["(set_color yellow)(echo $PWD | sed -e "s|^$HOME|~|")(set_color green)"]"
+    set -g __fish_prompt_cwd (set_color green)"["(set_color yellow)(\
+        echo $PWD | sed -e "s|^$HOME|~|")(set_color green)"]"(set_color normal)
 
     # User color
     switch $USER
@@ -44,23 +46,27 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_prompt_user (set_color green)$USER
     end
 
-    # Deliminator between user and host
-    set -l __fish_user_host_delim (set_color yellow)"@"
-
-    # .--user@hostname
-    echo -n -s (set_color yellow)".--" "$__fish_prompt_user" "$__fish_user_host_delim" "$__fish_prompt_hostname"
+    # .--
+    echo -n (set_color yellow)".--"
+    # user@hostname
+    echo -n $__fish_prompt_user(set_color yellow)"@"$__fish_prompt_hostname
     # [cwd]
-    echo -n -s "$__fish_prompt_cwd"
+    echo -n $__fish_prompt_cwd
+
+    # (time)
+    echo -n -s (set_color purple) " (" (date "+%H:%M") ")" (set_color normal)
+
     # virtual env
     if set -q VIRTUAL_ENV
-        echo -n -s " " (set_color -u green ) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal)
+        echo -n -s " " (set_color -u green ) "(" (basename "$VIRTUAL_ENV") ")"\
+            (set_color normal)
     end
+
     # git
-    echo -n -s (set_color normal)(__fish_git_prompt)
-    # newline
-    echo -e -n -s "\n"
+    echo -n -s (__fish_git_prompt)
+
     # '->'
-    echo -n -s (set_color yellow)"'->"
+    echo -e -n -s (set_color yellow)"\n'->"
     # exit status
     echo -n -s $__fish_prompt_exit_status " "
 

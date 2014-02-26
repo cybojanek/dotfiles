@@ -104,5 +104,5 @@ if status -i
     set -l g $__fish_ansi_to_rgb_g[( math $c + 1)]
     set -l b $__fish_ansi_to_rgb_b[( math $c + 1)]
 
-    set -U __fish_title_color "\e]6;1;bg;red;brightness;$r\a\r\e]6;1;bg;green;brightness;$g\a\r\e]6;1;bg;blue;brightness;$b\a\r"
+    set -g __fish_title_color "\e]6;1;bg;red;brightness;$r\a\r\e]6;1;bg;green;brightness;$g\a\r\e]6;1;bg;blue;brightness;$b\a\r"
 end
