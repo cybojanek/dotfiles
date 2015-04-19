@@ -38,6 +38,9 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_prompt_cwd (set_color green)"["(set_color yellow)(\
         echo $PWD | sed -e "s|^$HOME|~|")(set_color green)"]"(set_color normal)
 
+    set -g __fish_prompt_cwd_short (set_color green)"["(set_color yellow)(\
+        prompt_pwd)(set_color green)"]"(set_color normal)
+
     # User color
     switch $USER
       case root
@@ -46,27 +49,35 @@ function fish_prompt --description 'Write out the prompt'
         set -g __fish_prompt_user (set_color green)$USER
     end
 
-    # .--
-    echo -n (set_color yellow)".--"
-    # user@hostname
-    echo -n $__fish_prompt_user(set_color yellow)"@"$__fish_prompt_hostname
-    # [cwd]
-    echo -n $__fish_prompt_cwd
-
     # (time)
-    echo -n -s (set_color purple) " (" (date "+%H:%M") ")" (set_color normal)
+    set -l prompt_time " "(set_color purple)"("(date "+%H:%M")")"(set_color normal)
 
     # virtual env
     if set -q VIRTUAL_ENV
-        echo -n -s " " (set_color -u green ) "(" (basename "$VIRTUAL_ENV") ")"\
-            (set_color normal)
+        set prompt_venv " "(set_color -u green )"("(basename "$VIRTUAL_ENV")")"(set_color normal)
+    else
+        set prompt_venv ""
     end
 
     # git
-    echo -n -s (__fish_git_prompt)
+    set -l prompt_git (__fish_git_prompt)
+
+    # .--user@hostname
+    set -l prompt_host (set_color yellow)".--"$__fish_prompt_user(set_color yellow)"@"$__fish_prompt_hostname
+    # (time) (virtual env) (git)
+    set -l prompt_stat "$prompt_time$prompt_venv$prompt_git"
+
+    set -l prompt_long "$prompt_host$__fish_prompt_cwd$prompt_stat"
+    set -l prompt_short "$prompt_host$__fish_prompt_cwd_short$prompt_stat"
+
+    if test (tput cols) -le (echo -e -n $prompt_long | gsed -r "s:\x1B(\[[0-9;]*[mK]|\(B)::g" | wc -c)
+        echo -e $prompt_short
+    else
+        echo -e $prompt_long
+    end
 
     # '->'
-    echo -e -n -s (set_color yellow)"\n'->"
+    echo -e -n -s (set_color yellow)"'->"
     # exit status
     echo -n -s $__fish_prompt_exit_status " "
 
