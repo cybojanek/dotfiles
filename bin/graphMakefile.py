@@ -11,6 +11,7 @@ extension_color_map = {
     ".o": "#336AD0",
     ".so": "#9F7B00",
     ".a": "#64410A",
+    ".s": "#DB678E",
 }
 
 def get_color(n):

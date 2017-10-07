@@ -1,5 +1,13 @@
-regexp=[0-9a-zA-Z_\-]*(gcc|ld|ar|as)\s
+regexp=[0-9a-zA-Z_\-]*(gcc|ld|ar|as|clang|clang\+\+)\s
 colours=yellow
+count=once
+.........
+regexp=\sNothing\sto\sbe\sdone\sfor
+colours=yellow
+count=once
+.........
+regexp=(rm)
+colours=red
 count=once
 .........
 # gcc
@@ -7,7 +15,7 @@ count=once
 #colours=yellow
 #count=more
 #.c / .o
-regexp=\s[A-Za-z0-9_]+\.(c|o)
+regexp=\s[A-Za-z0-9_]+\.(cpp|c|o|)
 colours=bold white
 .........
 #
@@ -17,6 +25,14 @@ colours=bold magenta
 regexp=^[^:\s]*?:
 colours=cyan
 count=once
+.........
+regexp=\s\-D(\w)+
+colours=magenta
+count=once
+.........
+regexp=\s\-framework\s(\w)+
+colours=yellow
+count=more
 .........
 # warning flags
 regexp=\-W[A-Za-z0-9\-]*
@@ -31,7 +47,7 @@ regexp=\s(\-msoft\-float|\-mno\-sse|\-mtune=amdfam10|\-mno\-red\-zone)
 colours=bold blue
 .........
 # various flags
-regexp=\s(-std=c99|\-c|\-fPIC|\-fno\-builtin|\-O\d|\-r|\-g\d|\-g\b)
+regexp=\s(\-rf|-std=c99|\-c|\-fPIC|\-fno\-builtin|\-O\d|\-r|\-g\d|\-g\b)
 colours=green
 .........
 # output
@@ -39,12 +55,12 @@ regexp=\-o\s.+\b
 colours=yellow
 .........
 # link libraries
-regexp=\s\-l[A-Za-z0-9]+\s
+regexp=\s\-l[A-Za-z0-9]+
 colours=magenta
 .........
 # include dirs
-regexp=\s\-I[\./A-Za-z0-9]+\s
-colours=magenta
+regexp=\s(\-I|\-L)[\./A-Za-z0-9_]+
+colours=cyan
 .........
 # output
 regexp=\-MT\s[\./A-Za-z0-9]+\s
